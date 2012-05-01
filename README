@@ -1,0 +1,22 @@
+For dokumentasjon se i 'doc' katalogen. 'index.html' burde
+holde den informasjonen som trengs.
+
+Her er kommandoer som kan brukes under kjøring.
+
+ key  action
+-----------------------------------
+ n    new cube (reset)
+ s    solve cube (only for 3x3x3)
+ a    abort solving
+ r    randomize cube
+ +    increase cube size
+ -    decrease cube size
+ h    this text
+ q    quit
+
+ mouse movements
+-----------------------------------
+ - click and drag edges/corners to rotate
+ - center blocks cannot be rotated
+ - click and drag outside cube to rotate cube
+

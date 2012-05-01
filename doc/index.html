@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <title>Rubik's kube prosjekt, inf5660 v&aring;r 2008</title>
+    </head>
+
+    <body>
+        <h2>Rubik's kube prosjekt, inf5660 v&aring;r 2008</h2>
+
+        <h3>Gruppe</h3>
+
+        <p>
+        Gruppen best&aring;r av Torkild Retvedt (torkildr) og Martin &Oslash;in&aelig;s
+        Myrseth (martinom). Og <a href="timeliste.txt">timelisten</a> v&aring;r som
+        spesifiserer n&aring;r vi har jobbet p&aring; prosjektet.
+        </p>
+
+        <h3>Rubik's kube</h3>
+
+        <p>
+        Prosjektoppgaven baserer seg p&aring; en rubik's kube som er en
+        kube som best&aring;r av flere mindre bokser. Boksene p&aring; hver side
+        har samme farge i utgangsposisjonen til kuben, slik at man har ni bokser
+        med samme farge p&aring; hver side. Her er noen renderinger av v&aring;r kube:
+        <p>
+
+        <p>
+        <img src="rubik-1.png" alt="A Rubik's cube showing the front, top and right side" />
+        <img src="rubik-2.png" alt="A Rubik's cube that's scrambled" />
+        <img src="rubik-3.png" alt="A scrambled Rubik's cube rotating one of the sides" />
+        </p>
+
+        <p>
+        Over ser man en Rubik's kube i tre forskjellige tilstander. Den f&oslash;rste er en
+        kube i sin opprinnelige, eller l&oslash;ste, tilstand. Den andre er en kube som har
+        blitt rotert i diverse retninger slik at den kan l&oslash;ses. Den siste er en
+        ul&oslash;st kube hvor man holder p&aring; med &aring; rotere den ene siden.
+        </p>
+
+        <h3>Prosjektbeskrivelse</h3>
+
+        <p>
+        Prosjektet v&aring;rt g&aring;r ut p&aring; &aring; animere og l&oslash;se en Rubik's
+        kube. Animeringen av kuben skal gj&oslash;res i OpenGL via Python sine OpenGL
+        C-bindinger. L&oslash;sningsalgoritmet er ikke skrevet av oss, men hentet fra
+        <a href="http://www.wrongway.org/cube/solve.html">denne siden</a>. Kildekoden derifra
+        er GPL-lisensiert s&aring; vi st&aring;r frie til &aring; benytte oss av den.
+        L&oslash;seren er skrevet i C++, noe som betyr at vi m&aring; skrive C++/C-bindinger
+        til den for &aring; kj&oslash;re algoritmen fra Python.
+        </p>
+
+        <h3>Bygging og Kj&oslash;ring</h3>
+
+        <p>
+        N&aring;r man har <code>'rubik-1.0.tar.gz'</code> filen generert med
+        <code>'python setup.py sdist'</code>
+        vil man pakke den ut med: <code>'tar xf rubik-1.0.tar.gz'</code>. Det blir
+        da generert en katalog hvor prosjektet blir satt opp i riktig mappestruktur. For
+        &aring; bygge prosjektet kj&oslash;rer man bare <code>'python setup.py build'</code>
+        og mappen <code>'build'</code> blir generert. I build genereres det
+        flere kataloger, men det man skal kj&oslash;re ligger i <code>'lib.xxx-xxx'</code>.
+        Fra denne mappen kj&oslash;rer man programmet
+        med <code>'python rubik.py'</code>. En oversikt over kommandoene man kan utf&oslash;re
+        under kj&oslash;ringen av programmet skrives til terminalen n&aring;r progmmet
+        starter.
+        </p>
+
+        <h4>Kommandoer:</h4>
+
+        <p>
+        <i>'n' - </i> Ny kube, sett i l&oslash;st tilstand.<br/>
+        <i>'s' - </i> Sett i gang l&oslash;sing av kuben. Fungerer kun for (3x3x3).<br/>
+        <i>'a' - </i> Avbryt l&oslash;sningen av kuben.
+        Hvis man vil fortsette fra et punkt.<br/>
+        <i>'r' - </i> Roter kuben til et problem som man kan sette i gang &aring; l&oslash;se.<br/>
+        <i>'+' - </i> Zoom in, eller &oslash;ke st&oslash;rrelsen p&aring; kuben.<br/>
+        <i>'-' - </i> Zoom ut, eller minske st&oslash;rrelsen p&aring; kuben.<br/>
+        <i>'h' - </i> Skriv kommandolisten til terminal.<br/>
+        <i>'q' - </i> Avslutt programmet.
+        </p>
+
+        <h3>Koden</h3>
+
+        <p>
+        Prosjektet har vist seg &aring; ikke bli s&aring; alt for stort s&aring;nn med
+        tanke p&aring; antall linjer kode. Derimot s&aring; er nesten all funksjonaliteten
+        som skal implementeres relativ kompleks i gjennomf&oslash;ring. Det har vist seg
+        at mye av koden vi har skrevet krever en god del planlegging og utregning for
+        at alt skal klaffe. Spesielt n&aring;r det kommer til dette med rotering av de
+        diverse delene av kuben. Et eksempel p&aring; dette er &aring; registrere en
+        siderotasjon. Bak denne delen av oppgaven ligger det mye frustrasjon og tid.
+        </p>
+
+        <h4>Testing av implementasjon</h4>
+
+        <p>
+        Vi har skrevet noen sm&aring;tester for noen deler av implementasjonen v&aring;r.
+        Dette er unittester. Vi har ikke skrevet noen form for regressjonstest av
+        prosjektet i og med at unittestene tester de enkelte delene som inng&aring;r i
+        selve prosjektet. Det &aring; teste hele implementasjonen med regressjonstester
+        vil v&aelig;re litt problematisk p&aring; grunn av prosjektets visuelle faktor.
+        <p>
+
+        <h3>Grafikk - Visualisering og interaksjon</h3>
+
+        <p>
+        Kuben visualiseres og manipuleres i et tredimensjonalt milj&oslash;. Rotasjon av
+        selve kuben og av sidene gj&oslash;res med kommandoer med musen. Klikker man p&aring;
+        en av hj&oslash;rnekantene p&aring; den siden man vil rotere s&aring; initialiserer
+        man en siderotasjon. Klikker man noe som helst annet sted s&aring; roterer man selve
+        kuben. Beveger man musen i
+        x-retningen, dvs horisontalt, s&aring; vil man rotere den valgte siden rundt
+        y-aksen, dvs den loddrette aksen. Denne rotasjonen er uavhengig rotasjonen av kuben.
+        Beveger man musa i y-retningen, dvs vertikalt, s&aring; vil man rotere den valgte
+        siden enten rundt x-aksen eller rundt z-aksen. Ser man p&aring; kuben rett forfra
+        eller rett bakfra vil man rotere rundt x-aksen, mens om man ser kuben fra
+        h&oslash;yre eller venstre vil man rotere siden rundt z-aksen. Dette regnes ut i fra
+        hvilke av sidene som er n&aelig;rmest synspunktet.
+        </p>
+
+        <p>
+        Selv om grafikkdelen er bindeleddet i hele prosjektet her har vi ikke brukt alt
+        for lang tid til &aring; legge til ting som anti-aliasing ogs&aring; videre.
+        S&aring; lenge vi har en representasjon av kuben v&aring;r som kan manipuleres
+        og som kan demonstrere l&oslash;sing s&aring; holder den implementasjonen vi har
+        n&aring;. Litt snedig m&aring; man f&aring; lov til &aring; si at den automatiske
+        l&oslash;sningen av kuben er.
+        </p>
+
+        <h3>L&oslash;ser - For de med d&aring;rlig t&aring;lmodighet</h3>
+
+        <p>
+        L&oslash;seren vi fant egnet seg veldig godt, b&aring;de fordi den forenkler prosessen for l&oslash;sing av
+        kube, og fordi denne laget grunnlag for et hensiksmessig API mot Python. Cubex klassen
+        (som det den eksisterende C++ klassen tilbyr) har i tilegg gode muligheter for &aring;
+        kontrolleres utenifra (og er laget for nettopp dette).
+        </p>
+
+        <p>
+        Vi valgt &aring; skrive bindingene/logikken mellom Cubex-klassen og v&aring;r Cube-klasse i Python
+        sin C API. Denne fungerere godt mot C++, og vi slapp unna noen problemer som viste seg
+        eksistere ved &aring; eksportere Cubex-klassen til wrapper-kode med swig (ikke minst blir
+        koden ca 8000 linjer kortere, og derfor <i>mest</i> sansynligvis raskere). En annen
+        grunn til &aring; velge denne tiln&aelig;rmingen er at vi kun har lyst til &aring; bruke et lite
+        subset av funksjonaliteten i Cubex-klassen, da vi h&aring;ndterer det meste av
+        rotasjonsutregninger p&aring; egenh&aring;nd.
+        </p>
+
+        <p>
+        Det skal sies at l&oslash;sningen vi bruker her ikke er optimal. Dette er ganske naturlig
+        da det b&aring;de er veldig komplisert og tidkrevende (b&aring;de i koding og ressursbruk). Ved
+        testing ser vi at de fleste tilfeldige kuber ender opp med en ca 80-110 flytt, noe
+        som ikke er s&aring; veldig dumt, da det er fint &aring; se p&aring;...
+        </p>
+
+        <p>
+        For &aring; f&aring; Cubex-klassen til &aring; tolke v&aring;r kube korrekt er vi n&oslash;dt til &aring; gj&oslash;re en
+        konvertering mellom klassene. Dette gj&oslash;res i wrapper-koden v&aring;r (alts&aring; <code>solver.cpp</code>.
+        Denne overf&oslash;rer/konverterer relevant informasjon fra hver enkelt boks i Cube-klassen
+        og s&oslash;rger for at det havner p&aring; rett sted i l&oslash;seren. Denne konverteringen finner sted
+        ved hvert manuelle flytt (vi bruker Cubex til &aring; finne ut om en kube er ferdigl&oslash;st).
+        Tidsmessig viser dette seg &aring; v&aelig;re uproblematisk, da boksen alikevel er avhengig av
+        input fra bruker.
+        </p>
+
+        <h3>Ekstrene bibliotker og pakker</h3>
+
+        <p>
+        Hovvedvekten av den implementasjonen vi har gjort ligger helt klart i koden som
+        simulerer og visualiserer kuben, dvs alt av tegning og rotering. Vi har benyttet oss
+        av PyOpenGL som er C-bindinger mot OpenGL. OpenGL st&oslash;tter kun rendering og
+        visning av objekter i et tredimensjonalt milj&oslash;, s&aring; man m&aring; bruke
+        et annet bibliotek for &aring; vise selve vinduet. Her har vi brukt GLUT som er en
+        wrapper rundt OpenGL kontekster for &aring; h&aring;ndtere interaksjonen mot
+        vindusystemet. B&aring;de OpenGL og GLUT er skrevet for &aring; v&aelig;re s&aring;
+        kryss-kompatible som mulig med de fleste store operativssystemer. Man
+        beh&oslash;ver alts&aring; <a href="http://pyopengl.sourceforge.net/">PyOpenGL</a>
+        for &aring; kj&oslash;re prosjektet v&aring;rt. PyOpenGL inneholder b&aring;de
+        de vanlige, standard funksjonene i OpenGL: GL, GLU og GLX, pluss GLUT og noen
+        flere sm&aring;ting vi ikke har tatt i bruk.
+        </p>
+
+        <h3>Mangler og utvidelsesmuligheter</h3>
+
+        <p>
+        Det er flere ting som kunne v&aelig;rt utbedret og lagt til kubeimplementasjonen
+        v&aring;r. Noe av det mer vesentlige som mangler er at vi har ikke lagt til
+        muligheten for &aring; laste inn en forh&aring;ndsdefinert kube slik at simulatoren
+        kan l&oslash;se kuben visuelt for brukeren. En annen ting som er litt halvveis er
+        brukerinput mens den automatiske kubel&oslash;sningsfunksjonen er i gang. Man kan
+        ikke rotere kuben med noen s&aelig;rlig god kontroll mens kuben l&oslash;ses
+        automatisk. Det lureste er da &aring; bare rotere kuben til en passende posisjon
+        for s&aring; &aring; sette i gang l&oslash;seren.
+        </p>
+
+        <p>
+        I og med at dette prosjektet er det f&oslash;rste prosjektet noen av oss har
+        utf&oslash;rt i OpenGL med 3D-programmering s&aring; skal det ikke sees bort i
+        fra at det er en rekke bugs som muligens dukker opp n&aring;r det passer
+        d&aring;rlig. Det er muligens en ting vi har kommet borti som vi ikke har
+        f&aring;tt testet godt nok. Under en kj&oslash;ring opplevde vi at en av boksene
+        i kuben plutselig ble borte og ble ikke tegnet skikkelig. Hva det var og hva som
+        forutsaket feilen har vi ikke f&aring;tt greie p&aring; enda.
+        </p>
+
+    </body>
+</html>
+

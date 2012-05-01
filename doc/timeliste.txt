@@ -1,0 +1,77 @@
+Martin:
+
+07/03 - 2008
+4 hours:        Ported some of the drawing code from C.
+
+28/03 - 2008
+5 hours:        Begun to work on user interaction and
+                some more on the drawing part.
+29/03 - 2008
+2 hours:        Changed some of the data structure and
+                created the box class.
+03/04 - 2008
+6 hours:        Begun the dynamic box positioning algorithm.
+                Opens for the possibility of having cubes
+                of arbitrary size.
+04/04 - 2008
+7 hours:        Finished the dynamic positioning algorithm
+                along with some minor changes.
+07/04 - 2008
+4 hours:        Begun working on the side rotation algorithm.
+
+08/04 - 2008
+5 hours:        More on side rotation and some animation.
+
+11/04 - 2008
+2 hours:        Continuing with rotation.
+
+17/04 - 2008
+1 hour:         Commented some code.
+
+28/04 - 2008
+7 hours:        Some rearranging, and fixing minor issues.
+                Changed a vital part of the data structure
+                which allowed for a quicker positioning
+                algorithm.
+29/04 - 2008
+6 hours:        Same as the above. Create the setup.py
+                script for easier distribution.
+06/05 - 2008
+9 hours:        Fixing some of the side rotation issues and
+                structured the directories.
+07/05 - 2008
+10 hours:       Rewritten quite a bit of the rotation code to use
+                quaternions. Very fun to play with, but I have
+                no clue what they mean.
+
+08/05 - 2008
+12 hours:       Rotations should be complete.
+
+09/05 - 2008
+9 hours:        Finished the animation and action methods. Now the
+                entire cube should be automatic. Wrote some tests
+                and documentation.
+
+Torkild:
+
+29/03 - 2008:
+3 hours:        Some looking on datastructures
+
+29/04 - 2008:
+5 hours:        Rewrote calculations of box position
+
+05/05 - 2008:
+5 hours:        Started looking on solver (cubex.cpp)
+
+06/05 - 2008:
+9 hours:        Cont. + debugging on C++ solver as SWIG extension.
+
+07/05 - 2008:
+12 hours:       Made wrapper code interface with python correctly.
+            
+08/05 - 2008:
+12 hours:       Finished functionality on wrapper code.
+
+09/05 - 2008:
+10 hours:       Removed _all_ of the memory leaks from the wrapper code.
+                Wrote some tests and documentation.

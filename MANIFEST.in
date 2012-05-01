@@ -1,0 +1,10 @@
+include MANIFEST.in
+include src/solver/solver.h
+include src/solver/cubex.h
+include src/solver/readme.txt
+include doc/index.html
+include doc/rubik-1.png
+include doc/rubik-2.png
+include doc/rubik-3.png
+include doc/timeliste.txt
+
