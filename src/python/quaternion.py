@@ -170,9 +170,7 @@ class Quaternion:
 
 if __name__ == '__main__':
     q = Quaternion()
-    print q.vertex( (0., 0., 1.) )
+    print(q.vertex( (0., 0., 1.) ))
 
     q.rotate90("left")
-    print q.vertex( (0., 0., 1.) )
-
-
+    print(q.vertex( (0., 0., 1.) ))

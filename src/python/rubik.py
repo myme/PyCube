@@ -93,13 +93,13 @@ def drawGLScene():
 # Simple keyboard mappings
 def keyboard(key, x, y):
     if key == 'q':
-        print "Quitting..."
+        print("Quitting...")
         sys.exit(0)
     elif key == 's':
         solver.loadCube(cube)
         if not solver.isSolved():
             globals()['actions'] = solver.solveCube()
-            print "Solving %d steps" % len(globals()['actions'])
+            print("Solving %d steps" % len(globals()['actions']))
             solve(0)
     elif key == 'a':
         globals()['actions'] = []
@@ -119,7 +119,7 @@ def keyboard(key, x, y):
         cube.zoomOut()
         drawGLScene()
     elif key == 'h':
-        print help
+        print(help)
 
 # Called ever half second while automatically solving the cube
 def solve(num):
@@ -166,13 +166,13 @@ def main(argv=None):
 
     # Set up the size of the cube
     if len(argv) == 1:
-        print "No size given, assuming 3"
+        print("No size given, assuming 3")
     elif len(argv) == 2:
         size = int(argv[1])
         globals()['size'] = size
-        print "Creating a cube of size %d*%d*%d" % (size, size, size)
+        print("Creating a cube of size %d*%d*%d" % (size, size, size))
     else:
-        print "%s [size]" % argv[0]
+        print("%s [size]" % argv[0])
 
     # Create the cube
     globals()['cube'] = Cube(size)
@@ -184,7 +184,7 @@ def main(argv=None):
     glut.glutMouseFunc(mouseClick)
     glut.glutMotionFunc(mouseMove)
 
-    print help
+    print(help)
 
     # Run the main event loop
     glut.glutMainLoop()

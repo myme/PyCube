@@ -73,7 +73,7 @@ class Cube:
         solver.init()
 
     def __iter__(self):
-        for i in xrange(self.boxCount):
+        for i in range(self.boxCount):
             if self.boxes[i] != 0:
                 yield i
 
@@ -465,13 +465,13 @@ class Cube:
             # of 3x3x3 cubes at this time
             if self.n == 3:
                 if solver.isSolved() and self.n == 3:
-                    print "Solved"
+                    print("Solved")
                 else:
                     left = len(solver.solveCube())
                     if (left == 1):
-                        print "One move left!"
+                        print("One move left!")
                     elif (left <= 10):
-                        print "%d moves left" % left
+                        print("%d moves left" % left)
 
     def snapSideRotation(self):
         # If the user released the mouse before a complete rotation,

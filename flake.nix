@@ -6,11 +6,12 @@
   outputs = { self, nixpkgs }:
     let system = "x86_64-linux";
         pkgs = import nixpkgs { inherit system; };
-        rubik = pkgs.pythonPackages.buildPythonApplication {
+        python = pkgs.python3;
+        rubik = python.pkgs.buildPythonApplication {
           pname = "rubik";
           version = "0.1.0";
           srcs = ./.;
-          propagatedBuildInputs = with pkgs.pythonPackages; [
+          propagatedBuildInputs = with python.pkgs; [
             numpy
             pyopengl
           ];
@@ -18,7 +19,7 @@
     in {
       packages.${system}.rubik = rubik;
       defaultPackage.${system} = rubik;
-      devShell.${system} = (pkgs.python.withPackages (_: [
+      devShell.${system} = (python.withPackages (_: [
         rubik
       ])).env;
     };

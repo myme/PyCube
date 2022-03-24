@@ -24,13 +24,24 @@ static PyMethodDef SolverMethods[] = {
     { "loadCube", loadCube, METH_VARARGS, solver__doc__ }, 
     { "isSolved", isSolved, METH_VARARGS, solver__doc__ }, 
     { NULL, NULL, 0, NULL } 
-}; 
+};
  
 /* Setup method for the module */
-PyMODINIT_FUNC initsolver( void ) 
-{ 
-    (void) Py_InitModule3( "solver", SolverMethods, solver_module__doc__ ); 
-} 
+PyMODINIT_FUNC PyInit_solver( void )
+{
+    static struct PyModuleDef moduledef = {
+        PyModuleDef_HEAD_INIT,
+        "solver",             /* m_name */
+        solver_module__doc__, /* m_doc */
+        -1,                   /* m_size */
+        SolverMethods,        /* m_methods */
+        NULL,                 /* m_reload */
+        NULL,                 /* m_traverse */
+        NULL,                 /* m_clear */
+        NULL,                 /* m_free */
+    };
+    return PyModule_Create(&moduledef);
+}
 
 /* Init method, not _really_ neccassary */
 PyObject *init( PyObject * self, PyObject * args )
@@ -84,8 +95,8 @@ PyObject *loadCube ( PyObject * self, PyObject * args )
 
         PyObject *sides = PyObject_GetAttrString( item, "side" );
         /* Grab orientation for this side */
-        int side = PyInt_AsLong( PyList_GetItem(sides, level) );
-        
+        long int side = PyLong_AsLong( PyList_GetItem(sides, level) );
+
         /* Making a Cubex-compatable string */
         values[i] = ((char) side + '0');
 
@@ -121,7 +132,7 @@ PyObject *solveCube( PyObject * self, PyObject * args )
         move[1] = (solution++)[0];
 
         /* Append this move to the list */
-        PyObject *pyString = PyString_FromString(move);
+        PyObject *pyString = PyUnicode_FromString(move);
         PyList_Append( list, pyString );
     } while ( (++solution)[0] != '\0' );
 
