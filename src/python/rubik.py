@@ -146,7 +146,10 @@ def mouseClick(button, state, x, y):
     else:
         cube.mouseDown(x, y)
 
-def main(argv):
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
+
     # Initialize glut for a nice main window
     glut.glutInit(argv)
     glut.glutInitDisplayMode(glut.GLUT_DEPTH | glut.GLUT_RGB | glut.GLUT_DOUBLE)
